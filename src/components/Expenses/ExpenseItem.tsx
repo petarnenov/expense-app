@@ -1,8 +1,7 @@
 import Card from '../UI/Card';
 import ExpenseDate from '../Expenses/ExpenseDate';
 import './ExpenseItem.css';
-import React, { useState } from 'react';
-import { isConstructorDeclaration } from 'typescript';
+import { useState } from 'react';
 
 export type ExpenseItemType = {
   id: number;
@@ -40,7 +39,12 @@ export const ExpenseItem = ({ props }: Props) => {
           ${(props.amount / 100).toFixed(2)}
         </div>
       </div>
-      <button className="delete-btn" onClick={() => clickDeleteMeHandler(props.id)}>Delete me</button>
+      <button
+        className="delete-btn"
+        onClick={() => clickDeleteMeHandler(props.id)}
+      >
+        Delete me
+      </button>
     </Card>
   );
 };
