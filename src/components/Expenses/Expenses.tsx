@@ -11,7 +11,7 @@ export default function Expenses({ props }: Props): ReactElement {
   return (
     <Card className="expenses">
       {props.map((expense) => {
-        return <ExpenseItem props={expense} />;
+        return <ExpenseItem props={expense} key={expense.id} />;
       })}
     </Card>
   );

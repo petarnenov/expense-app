@@ -2,8 +2,7 @@ import "./App.css";
 import Expenses from "./components/Expenses/Expenses";
 import db from "./store/db.json";
 
-function App() {
-  console.log(db);
+function App() {  
   return (
     <div className="App">
       <header className="App-header">Expense React App</header>

@@ -1,20 +1,22 @@
-GET http://127.0.0.1:3333/expenses HTTP/1.1
+@baseUrl = http://127.0.0.1:3333/expenses
+
+GET {{baseUrl}} HTTP/1.1
 
 
 ###
 
-POST http://127.0.0.1:3333/expenses HTTP/1.1
+POST {{baseUrl}} HTTP/1.1
 content-type: application/json
 
 {
-    "date":{{$timestamp}},
+    "date":{{$randomInt 1600000000000 1631999999999}},
     "description":"MacBook Pro 13",
     "amount":{{$randomInt 100000 5000000}}
 }
 
 ###
 
-DELETE http://127.0.0.1:3333/expenses/5 HTTP/1.1
+DELETE {{baseUrl}}/4 HTTP/1.1
 
 ###
 
