@@ -1,13 +1,15 @@
 import React, { ReactElement } from 'react';
 import './NewExpense.css';
-import NewExpenseForm from './NewExpenseForm';
+import NewExpenseForm, { ExpenseFormType } from './NewExpenseForm';
 
-interface Props {}
+interface Props {
+  onSaveExpenseData: Function;
+}
 
-export default function NewExpense({}: Props): ReactElement {
+export default function NewExpense({ onSaveExpenseData }: Props): ReactElement {
   return (
     <div className="new-expense">
-      <NewExpenseForm />
+      <NewExpenseForm onSaveExpenseData={onSaveExpenseData} />
     </div>
   );
 }

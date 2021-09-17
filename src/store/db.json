@@ -19,10 +19,22 @@
       "id": 4
     },
     {
-      "description": "Dog Food",
-      "amount": 500,
-      "date": 1631750400000,
+      "date": 1607316594067,
+      "description": "MacBook Pro 13",
+      "amount": 2693843,
       "id": 5
+    },
+    {
+      "date": 1600050722268,
+      "description": "MacBook Pro 13",
+      "amount": 3015724,
+      "id": 6
+    },
+    {
+      "date": 1624483998713,
+      "description": "MacBook Pro 13",
+      "amount": 248958,
+      "id": 7
     }
   ]
 }

@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+import ExpenseFilter from '../Expenses/ExpenseFilter';
 import './Card.css';
 
 interface Props {

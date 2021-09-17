@@ -1,7 +1,9 @@
 import React, { ReactElement, useState } from 'react';
 import './NewExpenseForm.css';
 
-interface Props {}
+interface Props {
+  onSaveExpenseData: Function;
+}
 
 interface ExpenseState {
   description: string;
@@ -10,13 +12,13 @@ interface ExpenseState {
 }
 
 type ExpenseFormField = 'description' | 'amount' | 'date';
-type ExpenseFormType = {
+export type ExpenseFormType = {
   description: string;
   amount: number;
   date: number;
 };
 
-export default function NewExpenseForm({}: Props): ReactElement {
+export default function NewExpenseForm({ onSaveExpenseData }: Props): ReactElement {
   const [state, setState] = useState({} as ExpenseState);
 
   const changeHandler =
@@ -32,7 +34,9 @@ export default function NewExpenseForm({}: Props): ReactElement {
       amount: +state.amount,
       date: new Date(state.date).valueOf(),
     };
+    if (!expense.description || !expense.amount || !expense.date) return;
     await fetchHandler(expense);
+    onSaveExpenseData(expense);
     setState((prevState) => ({
       ...prevState,
       description: '',
@@ -92,7 +96,7 @@ export default function NewExpenseForm({}: Props): ReactElement {
             value={state.date}
           />
         </div>
-        <div className="new-expensee__actions">
+        <div className="new-expense__actions">
           <button type="submit">Add expense</button>
         </div>
       </div>
