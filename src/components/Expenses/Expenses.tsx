@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
-import Card from './Card';
-import { ExpenseItem, ExpenseItemType } from './ExpenseItem';
+import Card from '../UI/Card';
+import { ExpenseItem, ExpenseItemType } from '../Expenses/ExpenseItem';
 import './Expenses.css';
 
 interface Props {

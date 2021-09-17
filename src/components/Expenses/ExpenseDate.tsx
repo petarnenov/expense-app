@@ -1,5 +1,5 @@
-import React, { ReactElement } from 'react';
-import { ExpenseItemType } from './ExpenseItem';
+import { ReactElement } from 'react';
+import { ExpenseItemType} from "../Expenses/ExpenseItem"
 import './ExpenseDate.css';
 
 interface Props {

@@ -1,5 +1,5 @@
-import Card from './Card';
-import ExpenseDate from './ExpenseDate';
+import Card from '../UI/Card';
+import ExpenseDate from '../Expenses/ExpenseDate';
 import './ExpenseItem.css';
 
 export type ExpenseItemType = {
