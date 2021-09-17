@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+import Card from './Card';
 import { ExpenseItem, ExpenseItemType } from './ExpenseItem';
 import './Expenses.css';
 
@@ -8,10 +9,10 @@ interface Props {
 
 export default function Expenses({ props }: Props): ReactElement {
   return (
-    <div className="expenses">
+    <Card className="expenses">
       {props.map((expense) => {
         return <ExpenseItem props={expense} />;
       })}
-    </div>
+    </Card>
   );
 }

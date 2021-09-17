@@ -1,3 +1,4 @@
+import Card from './Card';
 import ExpenseDate from './ExpenseDate';
 import './ExpenseItem.css';
 
@@ -13,16 +14,14 @@ interface Props {
 
 export const ExpenseItem = ({ props }: Props) => {
   return (
-    <div>
-      <div className="expense-item" key={props.id}>
-        <ExpenseDate props={props} />
-        <div className="expense-item__description">
-          <h2>{props.description}</h2>
-          <div className="expense-item__price">
-            ${(props.amount / 100).toFixed(2)}
-          </div>
+    <Card className="expense-item" key={props.id}>
+      <ExpenseDate props={props} />
+      <div className="expense-item__description">
+        <h2>{props.description}</h2>
+        <div className="expense-item__price">
+          ${(props.amount / 100).toFixed(2)}
         </div>
       </div>
-    </div>
+    </Card>
   );
 };
