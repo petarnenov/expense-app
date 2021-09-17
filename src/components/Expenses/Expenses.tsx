@@ -19,9 +19,11 @@ export default function Expenses({ props }: Props): ReactElement {
     <div className="expenses">
       <ExpenseFilter onChangeSelectData={onChangeSelectData} filter={filter} />
       <Card className="expenses">
-        {props.map((expense) => {
-          return <ExpenseItem props={expense} key={expense.id} />;
-        })}
+        {props
+          .filter((expense) => new Date(expense.date).getFullYear() === +filter)
+          .map((expense) => {
+            return <ExpenseItem props={expense} key={expense.id} />;
+          })}
       </Card>
     </div>
   );
