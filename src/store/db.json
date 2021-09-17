@@ -1,0 +1,28 @@
+{
+  "expenses": [
+    {
+      "id": 1,
+      "date": 1631850012142,
+      "description": "Car Insurance",
+      "amount": 123455
+    },
+    {
+      "id": 2,
+      "date": 1531840012142,
+      "description": "Piano",
+      "amount": 33344
+    },
+    {
+      "id": 3,
+      "date": 1431840012142,
+      "description": "Toyota RAV4",
+      "amount": 4523360
+    },
+    {
+      "date": 1631858578,
+      "description": "MacBook Pro 13",
+      "amount": 1064046,
+      "id": 4
+    }
+  ]
+}

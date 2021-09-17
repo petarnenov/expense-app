@@ -17,6 +17,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "format": "prettier -w src/**/*.ts",
+    "api:server": "json-server --watch src/store/db.json --port 3333",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
