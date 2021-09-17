@@ -10,6 +10,11 @@ interface ExpenseState {
 }
 
 type ExpenseFormField = 'description' | 'amount' | 'date';
+type ExpenseFormType = {
+  description: string;
+  amount: number;
+  date: number;
+};
 
 export default function NewExpenseForm({}: Props): ReactElement {
   const [state, setState] = useState({} as ExpenseState);
@@ -20,8 +25,41 @@ export default function NewExpenseForm({}: Props): ReactElement {
       setState((prevState) => ({ ...prevState, [field]: value }));
     };
 
+  const submitHandler = async (e: React.FormEvent): Promise<void> => {
+    e.preventDefault();
+    const expense: ExpenseFormType = {
+      description: state.description,
+      amount: +state.amount,
+      date: new Date(state.date).valueOf(),
+    };
+    await fetchHandler(expense);
+    setState((prevState) => ({
+      ...prevState,
+      description: '',
+      amount: '',
+      date: '',
+    }));
+  };
+
+  const fetchHandler = async (data: ExpenseFormType): Promise<void> => {
+    try {
+      await fetch('http://127.0.0.1:3333/expenses', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error(err.message);
+      }
+      console.error(err);
+    }
+  };
+
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label htmlFor="title">Title</label>

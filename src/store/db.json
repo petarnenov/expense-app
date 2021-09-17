@@ -13,10 +13,16 @@
       "amount": 33344
     },
     {
-      "id": 3,
-      "date": 1431840012142,
-      "description": "Toyota RAV4",
-      "amount": 4523360
+      "description": "Smart Home",
+      "amount": 1000,
+      "date": 1630972800000,
+      "id": 4
+    },
+    {
+      "description": "Dog Food",
+      "amount": 500,
+      "date": 1631750400000,
+      "id": 5
     }
   ]
 }
