@@ -3,25 +3,22 @@ import './NewExpenseForm.css';
 
 interface Props {}
 
+interface ExpenseState {
+  description: string;
+  amount: string;
+  date: string;
+}
+
+type ExpenseFormField = 'description' | 'amount' | 'date';
+
 export default function NewExpenseForm({}: Props): ReactElement {
-  const [title, setTitle] = useState('');
-  const [amount, setAmount] = useState('');
-  const [date, setDate] = useState('');
+  const [state, setState] = useState({} as ExpenseState);
 
-  const changeTitleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setTitle(value);
-  };
-
-  const changeAmountHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setAmount(value);
-  };
-
-  const changeDateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setDate(value);
-  };
+  const changeHandler =
+    (e: React.ChangeEvent<HTMLInputElement>) => (field: ExpenseFormField) => {
+      const value = e.target.value;
+      setState((prevState) => ({ ...prevState, [field]: value }));
+    };
 
   return (
     <form>
@@ -31,8 +28,8 @@ export default function NewExpenseForm({}: Props): ReactElement {
           <input
             type="text"
             name="title"
-            onChange={changeTitleHandler}
-            value={title}
+            onChange={(e) => changeHandler(e)('description')}
+            value={state.description}
           />
         </div>
         <div className="new-expense__control">
@@ -42,8 +39,8 @@ export default function NewExpenseForm({}: Props): ReactElement {
             name="amount"
             min="0.01"
             step="0.01"
-            onChange={changeAmountHandler}
-            value={amount}
+            onChange={(e) => changeHandler(e)('amount')}
+            value={state.amount}
           />
         </div>
         <div className="new-expense__control">
@@ -53,8 +50,8 @@ export default function NewExpenseForm({}: Props): ReactElement {
             name="date"
             min="2019-01-01"
             max="2021-09-17"
-            onChange={changeDateHandler}
-            value={date}
+            onChange={(e) => changeHandler(e)('date')}
+            value={state.date}
           />
         </div>
         <div className="new-expensee__actions">
