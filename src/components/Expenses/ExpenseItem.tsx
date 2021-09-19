@@ -1,7 +1,6 @@
-import Card from '../UI/Card';
-import ExpenseDate from '../Expenses/ExpenseDate';
-import './ExpenseItem.css';
-import { useState } from 'react';
+import Card from "../UI/Card";
+import ExpenseDate from "../Expenses/ExpenseDate";
+import "./ExpenseItem.css";
 
 export type ExpenseItemType = {
   id: number;
@@ -14,13 +13,10 @@ interface Props {
 }
 
 export const ExpenseItem = ({ props }: Props) => {
-  const [description, setDescription] = useState(props.description);
   const clickDeleteMeHandler = async (id: number) => {
-    console.log('clicked button with id: ', id);
-    //setDescription(`${props.description}:${Date.now()}`);
     try {
       await fetch(`http://127.0.0.1:3333/expenses/${id}`, {
-        method: 'DELETE',
+        method: "DELETE",
       });
     } catch (err) {
       if (err instanceof Error) {
@@ -31,20 +27,22 @@ export const ExpenseItem = ({ props }: Props) => {
     }
   };
   return (
-    <Card className="expense-item" key={props.id}>
-      <ExpenseDate props={props} />
-      <div className="expense-item__description">
-        <h2>{description}</h2>
-        <div className="expense-item__price">
-          ${(props.amount / 100).toFixed(2)}
+    <li>
+      <Card className="expense-item" key={props.id}>
+        <ExpenseDate props={props} />
+        <div className="expense-item__description">
+          <h2>{props.description}</h2>
+          <div className="expense-item__price">
+            ${(props.amount / 100).toFixed(2)}
+          </div>
         </div>
-      </div>
-      <button
-        className="delete-btn"
-        onClick={() => clickDeleteMeHandler(props.id)}
-      >
-        Delete me
-      </button>
-    </Card>
+        <button
+          className="delete-btn"
+          onClick={() => clickDeleteMeHandler(props.id)}
+        >
+          Delete me
+        </button>
+      </Card>
+    </li>
   );
 };

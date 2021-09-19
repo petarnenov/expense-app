@@ -1,8 +1,9 @@
-import React, { ReactElement, useState } from 'react';
-import './NewExpenseForm.css';
+import React, { ReactElement, useState } from "react";
+import "./NewExpenseForm.css";
 
 interface Props {
   onSaveExpenseData: Function;
+  hideForm: Function;
 }
 
 interface ExpenseState {
@@ -11,14 +12,17 @@ interface ExpenseState {
   date: string;
 }
 
-type ExpenseFormField = 'description' | 'amount' | 'date';
+type ExpenseFormField = "description" | "amount" | "date";
 export type ExpenseFormType = {
   description: string;
   amount: number;
   date: number;
 };
 
-export default function NewExpenseForm({ onSaveExpenseData }: Props): ReactElement {
+export default function NewExpenseForm({
+  onSaveExpenseData,
+  hideForm,
+}: Props): ReactElement {
   const [state, setState] = useState({} as ExpenseState);
 
   const changeHandler =
@@ -27,7 +31,7 @@ export default function NewExpenseForm({ onSaveExpenseData }: Props): ReactEleme
       setState((prevState) => ({ ...prevState, [field]: value }));
     };
 
-  const submitHandler = async (e: React.FormEvent): Promise<void> => {
+  const submitHandler: React.FormEventHandler = async (e): Promise<void> => {
     e.preventDefault();
     const expense: ExpenseFormType = {
       description: state.description,
@@ -39,18 +43,19 @@ export default function NewExpenseForm({ onSaveExpenseData }: Props): ReactEleme
     onSaveExpenseData(expense);
     setState((prevState) => ({
       ...prevState,
-      description: '',
-      amount: '',
-      date: '',
+      description: "",
+      amount: "",
+      date: "",
     }));
+    hideForm();
   };
 
   const fetchHandler = async (data: ExpenseFormType): Promise<void> => {
     try {
-      await fetch('http://127.0.0.1:3333/expenses', {
-        method: 'POST',
+      await fetch("http://127.0.0.1:3333/expenses", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
@@ -70,7 +75,7 @@ export default function NewExpenseForm({ onSaveExpenseData }: Props): ReactEleme
           <input
             type="text"
             name="title"
-            onChange={(e) => changeHandler(e)('description')}
+            onChange={(e) => changeHandler(e)("description")}
             value={state.description}
           />
         </div>
@@ -81,7 +86,7 @@ export default function NewExpenseForm({ onSaveExpenseData }: Props): ReactEleme
             name="amount"
             min="0.01"
             step="0.01"
-            onChange={(e) => changeHandler(e)('amount')}
+            onChange={(e) => changeHandler(e)("amount")}
             value={state.amount}
           />
         </div>
@@ -91,10 +96,15 @@ export default function NewExpenseForm({ onSaveExpenseData }: Props): ReactEleme
             type="date"
             name="date"
             min="2019-01-01"
-            max="2021-09-17"
-            onChange={(e) => changeHandler(e)('date')}
+            max="2022-12-31"
+            onChange={(e) => changeHandler(e)("date")}
             value={state.date}
           />
+        </div>
+        <div className="new-expense__actions">
+          <button type="button" onClick={() => hideForm()}>
+            Cancel
+          </button>
         </div>
         <div className="new-expense__actions">
           <button type="submit">Add expense</button>

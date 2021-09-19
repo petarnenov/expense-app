@@ -1,9 +1,8 @@
-import { ReactElement } from 'react';
-import ExpenseFilter from '../Expenses/ExpenseFilter';
-import './Card.css';
+import { ReactElement } from "react";
+import "./Card.css";
 
 interface Props {
-  children: ReactElement<any, any>[];
+  children: any;
   className: string;
 }
 
